@@ -6,7 +6,7 @@ char* fileOneData = NULL;
 char* fileTwoData = NULL;
 
 //get the size file from desk and loaded in the heap
-void readFile_FromDesk(char* filePath, char** theFileData) {
+void readFile_FromDesk(uintptr_t filePath, char** theFileData) {
 	FILE* hamadFile = fopen(filePath, "rb");
 	if (hamadFile) {
 		fseek(hamadFile, 0, SEEK_END);
@@ -17,6 +17,7 @@ void readFile_FromDesk(char* filePath, char** theFileData) {
 
 		if (fread(fileData, 1, fileSize, hamadFile) == fileSize) {
 			printf("file read successfuly");
+			*theFileData = fileData;//fileOneData = fileData;
 		}
 		else
 		{
@@ -24,7 +25,8 @@ void readFile_FromDesk(char* filePath, char** theFileData) {
 		}
 
 		
-		*theFileData = fileData;//fileOneData = fileData;
+		
+		free(fileData);
 		fclose(hamadFile);
 	}
 }
@@ -36,11 +38,11 @@ void findtheCharecter() {
 
 int main() {
 	char fileOneName[] = "C:\\file1.bin";
-	readFile_FromDesk(fileOneName, &fileOneData);
+	readFile_FromDesk((uintptr_t)fileOneName, &fileOneData);
 
 
 	char fileTwoName[] = "C:\\file2.bin";
-	readFile_FromDesk(fileTwoName, &fileTwoData);
+	readFile_FromDesk((uintptr_t)fileTwoName, &fileTwoData);
 
 
 	getchar();
