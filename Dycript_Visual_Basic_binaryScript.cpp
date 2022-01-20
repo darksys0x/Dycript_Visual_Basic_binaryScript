@@ -23,7 +23,7 @@ void readFile_FromDesk(char* filePath, char** theFileData, int* sizeOneFile) {
 		char* fileData = (char*)malloc(fileSize);
 
 		if (fread(fileData, 1, fileSize, hamadFile) == fileSize) {
-			printf("file read successfuly\n");
+			printf("file reads successfully\n");
 			if (sizeOneFile) {
 				*sizeOneFile = fileSize;
 			}
@@ -78,7 +78,7 @@ void findtheCharecter() {
 	//}
 	FILE* deskFile = fopen("C:\\Users\\DFIR\\Desktop\\aliMalwarw\\powershellScript\\powershellScript\\Source.txt", "w+");
 	if (deskFile) {
-		printf("we got ittt :)))");
+		printf("i got ittt :)))");
 		fwrite(newFileMemory, 1, fileSizeONeForTest, deskFile);
 		fclose(deskFile);
 	}
